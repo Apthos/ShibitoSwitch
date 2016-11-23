@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="MySwitch:jar">
+    <output-path>$USER_HOME$/Desktop/Dead Mans Switch</output-path>
+    <root id="archive" name="MySwitch.jar">
+      <element id="module-output" name="MySwitch" />
+    </root>
+  </artifact>
+</component>
