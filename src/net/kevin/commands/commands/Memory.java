@@ -11,6 +11,6 @@ public class Memory implements Command {
         Runtime runtime = Runtime.getRuntime();
         long UsedMem = runtime.totalMemory() - runtime.freeMemory();
         UsedMem =  UsedMem/1024;
-        Main.getConsole().say("Memory Used: " + String.valueOf(UsedMem));
+        Main.say("Memory Used: " + String.valueOf(UsedMem));
     }
 }

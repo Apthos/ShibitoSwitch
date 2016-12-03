@@ -11,6 +11,7 @@ import java.util.List;
 public class CommandManager {
 
     private HashMap<String, Command> Commands;
+    private List<String> PrevCommands = new ArrayList<>();
 
     public CommandManager() {
         Commands = new HashMap<>();
@@ -24,7 +25,7 @@ public class CommandManager {
 
     public void submitInterpretation(String CMD) {
         if (!Commands.containsKey(CMD.split(" ")[0].toLowerCase())) {
-            Main.getConsole().report("ERROR: \"" + CMD.split(" ")[0] +
+            Main.report("ERROR: \"" + CMD.split(" ")[0] +
                     "\" isn't a valid command!");
             return;
         }

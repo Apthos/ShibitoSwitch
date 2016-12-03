@@ -1,7 +1,8 @@
 package net.kevin.gui;
 
 import net.kevin.Main;
-import net.kevin.listeners.CommandKeys;
+import net.kevin.commands.CommandManager;
+import net.kevin.commands.listeners.CommandKeys;
 import net.kevin.time.TimeManager;
 
 import javax.swing.*;
@@ -18,7 +19,6 @@ public class Console extends JFrame {
     private JScrollPane Scroller;
     private JLabel Memory;
 
-
     public Console() {
         super("Dead Mans Switch");
         setContentPane(MainPanel);
@@ -27,8 +27,6 @@ public class Console extends JFrame {
         setVisible(true);
 
         setSize(800, 500);
-
-        CommandPanel.addKeyListener(new CommandKeys());
 
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         System.setProperty("com.apple.mrj.application.apple.menu.about.name",
@@ -45,12 +43,17 @@ public class Console extends JFrame {
                     sleep(1000);
                     Runtime rt = Runtime.getRuntime();
                     Memory.setText("Memory Usage: " + String.valueOf((
-                            (rt.totalMemory() - rt.freeMemory()) / 1024) / 1024) + "MB");
+                            (rt.totalMemory() - rt.freeMemory()) / 1024) / 1024)
+                            + "MB");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }).start();
+    }
+    public void initializeEvents(Console console, CommandManager commandManager){
+        this.addKeyListener(new CommandKeys(console, commandManager));
+
     }
 
     public void say(String Message) {
