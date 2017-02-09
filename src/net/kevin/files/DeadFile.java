@@ -6,12 +6,10 @@ import java.io.*;
 
 public class DeadFile {
 
-    private static final String OUTPUT_FILE_NAME = "/Users/apthos/Desktop/test.shb";
-
     public DeadFile(File file) {
-        read(file);
+        interpret(read(file));
         Main.say("File Binary String Conversion : "
-                + new String(readAlternateImpl(OUTPUT_FILE_NAME)));
+                + new String(readAlternateImpl(file.getAbsolutePath())));
     }
 
     public DeadFile() {
@@ -19,7 +17,6 @@ public class DeadFile {
     }
 
     byte[] read(File file) {
-        Main.say("File size: " + file.length());
         byte[] result = new byte[(int) file.length()];
         try {
             InputStream input = null;
@@ -30,6 +27,7 @@ public class DeadFile {
                     int bytesRemaining = result.length - totalBytesRead;
                     int bytesRead = input.read
                             (result, totalBytesRead, bytesRemaining);
+                    Main.report("READING :" + new String(result));
                     if (bytesRead > 0) {
                         totalBytesRead = totalBytesRead + bytesRead;
                     }
@@ -44,8 +42,17 @@ public class DeadFile {
         } catch (FileNotFoundException ex) {
             Main.say("File not found.");
         } catch (IOException ex) {
-            Main.say(ex.toString());       }
+            Main.say(ex.toString());
+        }
         return result;
+    }
+
+    byte[] interpret(byte[] bytes) {
+        for (byte Byte : bytes){
+            System.out.println(Byte);
+        }
+
+        return null;
     }
 
     void write(byte[] aInput, String aOutputFileName) {
@@ -104,6 +111,7 @@ public class DeadFile {
                     if (bytesRead > 0) {
                         result.write(bucket, 0, bytesRead);
                     }
+                    Main.report(new String(result.toByteArray()));
                 }
             } finally {
                 aInput.close();

@@ -2,8 +2,8 @@ package net.kevin.commands;
 
 import java.util.List;
 
-public interface Command {
+public abstract class Command {
 
-    void onCommand(String Command, List<String> Args);
+    public abstract void onCommand(String Command, List<String> Args);
 
 }

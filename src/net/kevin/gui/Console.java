@@ -21,16 +21,13 @@ public class Console extends JFrame {
 
     public Console() {
         super("Dead Mans Switch");
+        setName("Shibito Switch");
         setContentPane(MainPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
 
         setSize(800, 500);
-
-        System.setProperty("apple.laf.useScreenMenuBar", "true");
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name",
-                "Dead Switch");
 
         say("Console Initialized Sucessfully!");
         MemoryWatcher();
@@ -52,8 +49,8 @@ public class Console extends JFrame {
         }).start();
     }
     public void initializeEvents(Console console, CommandManager commandManager){
-        this.addKeyListener(new CommandKeys(console, commandManager));
-
+        say("Console Events Initialized!");
+        CommandPanel.addKeyListener(new CommandKeys(console, commandManager));
     }
 
     public void say(String Message) {
